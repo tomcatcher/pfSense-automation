@@ -72,6 +72,6 @@ Humorously, the necessity for low-level architecture in simple services can some
 
 [def]: static/microkernel.png
 [def2]: static/architecture-overview.png
-[def3]: static/monolithic-service.png
+[def3]: static/monolithic-microservice.png
 
 # TBD soon
