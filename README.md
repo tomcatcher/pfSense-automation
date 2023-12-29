@@ -52,7 +52,7 @@ This dual-level architectural strategy, combining the microkernel and microservi
 
 <center>
 
-![Low-level Design][def]
+![Low-level Design - Microkernel][def]
 
 #### *Figure 1 - Low-level SW component design - complex service - microkernels extended by separately developed and maintained modules/plugins*
 
@@ -62,7 +62,16 @@ The microservices architecture in this system is bifurcated into two distinct ca
 
 Humorously, the necessity for low-level architecture in simple services can sometimes be as overestimated as believing a teacup could serve as a swimming pool.
 
-[def]: static/low-level-design.png
+<center>
+
+![Low-level Design - Monolithic design][def3]
+
+#### *Figure 1 - Low-level SW component design - simple service - monolithic SW components with simple interface and a typically short execution time*
+
+</center>
+
+[def]: static/microkernel.png
 [def2]: static/architecture-overview.png
+[def3]: static/monolithic-service.png
 
 # TBD soon
