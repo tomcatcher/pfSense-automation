@@ -1,0 +1,27 @@
+---
+virtual_machine:
+  hardware:
+    disk: 100GB
+    memory: 8GB
+    cpus: 4
+    network_adapters: 2
+  os:
+    distribution: Ubuntu
+    version: 20.04
+  sbom: /path/to/sbom.txt
+  installed_sw:
+    - package1
+    - package2
+    - package3
+  configuration_files:
+    - /path/to/config1.conf
+    - /path/to/config2.conf
+  backup_lifecycle:
+    - schedule: daily
+      retention: 7 days
+    - schedule: weekly
+      retention: 4 weeks
+  automation:
+    alarms_definition: /path/to/alarms.yml
+    ticket_definition: /path/to/tickets.yml
+    ticket_enrichment_definition: /path/to/ticket_enrichment.yml

@@ -1,0 +1,12 @@
+---
+system:
+  clustering: true
+  networks:
+    - name: network1
+      subnet: 192.168.1.0/24
+    - name: network2
+      subnet: 10.0.0.0/24
+  server:
+    role: web-server
+    group: production
+    context: development
