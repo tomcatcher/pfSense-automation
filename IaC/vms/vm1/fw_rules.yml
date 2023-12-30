@@ -1,0 +1,37 @@
+---
+firewall:
+  - name: allow-ssh
+    state: enabled
+    action: accept
+    protocol: tcp
+    source: 0.0.0.0/0
+    destination: 0.0.0.0/0
+    port: 22
+  - name: allow-http
+    state: enabled
+    action: accept
+    protocol: tcp
+    source: 0.0.0.0/0
+    destination: 0.0.0.0/0
+    port: 80
+  - name: allow-https
+    state: enabled
+    action: accept
+    protocol: tcp
+    source: 0.0.0.0/0
+    destination: 0.0.0.0/0
+    port: 443
+  - name: allow-icmp
+    state: enabled
+    action: accept
+    protocol: icmp
+    source: 0.0.0.0/0
+    destination: 0.0.0.0/0
+    port: N/A
+  - name: allow-dns
+    state: enabled
+    action: accept
+    protocol: udp
+    source: 0.0.0.0/0
+    destination: 0.0.0.0/0
+    port: 53

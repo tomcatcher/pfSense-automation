@@ -1,0 +1,1305 @@
+---
+monitoring:
+  - name: cpu-user
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-system
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-iowait
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-steal
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-idle
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: memory-used
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-buffered
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-cached
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-free
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: disk-used
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: disk-free
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: disk-read
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-write
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-collisions
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-drops-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-drops-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-fifo-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-fifo-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-compressed-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-compressed-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-multicast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-multicast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-broadcast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-broadcast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-drops-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-drops-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-fifo-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-fifo-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-compressed-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-compressed-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-multicast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-multicast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-broadcast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-broadcast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-read
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-write
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: emailstate: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-iowait
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-steal
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-idle
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: memory-used
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-buffered
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-cached
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-free
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: disk-used
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: disk-free
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: disk-read
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-write
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-collisions
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-drops-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-drops-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-fifo-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-fifo-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-compressed-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-compressed-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-multicast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-multicast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-broadcast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-broadcast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-drops-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-drops-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-fifo-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-fifo-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-compressed-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-compressed-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-multicast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-multicast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-broadcast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-broadcast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-iowait
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-steal
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: cpu-idle
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: memory-used
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-buffered
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-cached
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: memory-free
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: disk-used
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email: admin@example.com
+  - name: disk-free
+    state: enabled
+    interval: 60
+    threshold: 100
+    action: email
+    email: admin@example.com
+  - name: disk-read
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-write
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-collisions
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-drops-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-drops-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-fifo-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-fifo-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-compressed-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-compressed-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-multicast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-multicast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-broadcast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-broadcast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-drops-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-drops-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-fifo-errors-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-fifo-errors-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-compressed-packets-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-compressed-packets-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-multicast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-multicast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-broadcast-receive
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: network-unknown-protocol-broadcast-transmit
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-read
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-write
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+    email:
+  - name: disk-io-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-weighted-time
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-in-progress
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-read-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-io-merged-disk-io-write-requests
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-max
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-min
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:
+  - name: disk-temperature-avg-avg-avg-avg
+    state: enabled
+    interval: 60
+    threshold: 80
+    action: email
+    email:

@@ -1,0 +1,18 @@
+---
+configuration_management:
+  - /path/to/config1.conf
+      restart_on_change: 1
+      action_on_change: restart
+      restart_command: systemctl restart service1
+      reload_on_change: 0
+      reload_command: systemctl reload service1
+      keep_history: 1
+      history_limit: 10
+    - /path/to/config2.conf
+      restart_on_change: 0
+      action_on_change: reload
+      restart_command: systemctl restart service1
+      reload_on_change: 1
+      reload_command: systemctl reload service1
+      keep_history: 1
+      history_limit: 20

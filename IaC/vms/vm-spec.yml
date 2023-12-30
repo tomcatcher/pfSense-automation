@@ -1,27 +1,293 @@
 ---
 virtual_machine:
+  uuid: 12345678-1234-1234-1234-123456789012
+  name: vm1
+  description: This is a VM
+  pvenode: pve0
+  cluster: cluster0
+  template: debian-12.0-standard_12.0-1_amd64.tar.gz
   hardware:
-    disk: 100GB
-    memory: 8GB
-    cpus: 4
-    network_adapters: 2
+    disks:
+      - uuid: 12345678-1234-1234-1234-123456789012
+        name: disk0
+        size: 100GiB
+        type: scsi
+        storage: local-lvm
+        partitions:
+          - uuid: 12345678-1234-1234-1234-123456789012
+            name: partition0
+            size: 50GiB
+            mountpoint: /
+            filesystem: ext4
+            label: ROOT
+            options: defaults
+            dump: 0
+            pass: 1
+          - uuid: 12345678-1234-1234-1234-123456789012
+            name: partition1
+            size: 8GiB
+            mountpoint: swap
+            filesystem: swap
+            label: SWAP
+            options: defaults
+            dump: 0
+            pass: 2
+      - uuid: 12345678-1234-1234-1234-123456789012
+        name: disk1
+        size: 100GB
+        type: scsi
+        storage: local-lvm
+        partitions:
+          - uuid: 12345678-1234-1234-1234-123456789012
+            name: partition0
+            size: 50GiB
+            mountpoint: /var
+            filesystem: ext4
+            label: VAR
+            options: defaults
+            dump: 0
+            pass: 2
+          - uuid: 12345678-1234-1234-1234-123456789012
+            name: partition1
+            size: 50GiB
+            mountpoint: /usr
+            filesystem: ext4
+            label: USR
+            options: defaults
+            dump: 0
+            pass: 2
+    memory: 8GiB
+      baloon: 0
+      min: N/A
+      max: N/A
+    sockets:
+      - 0
+        numanode: 0
+        cores: 2
+        threads: 2
+      - 1
+        numanode: 1
+        cores: 2
+        threads: 2
+      type: host
+      limit: 0%
+      numa: 0
+      hotplug: 0
+    network_adapters:
+      - uuid: 12345678-1234-1234-1234-123456789012
+        name: eth0
+        type: virtio
+        bridge: vmbr0
+        mac: 00:00:00:00:00:00
+        ip: 192.168.100.100/24
+        gateway: 192.168.100.1
+        dns:
+          - 192.168.100.1
+          - 8.8.8.8
+          - 8.8.4.4
+            domains:
+              - example.com
+              - example.org
+        hotplug: 0
+        firewall: 1
+        rate: 0 Mbps
+        tag: 0
+        trunks:
+          - vlan: 100
+            tag: 0
+            bridges:
+              - vmbr0
+              - vmbr1
+          - vlan: 200
+            tag: 0
+            bridges:
+              - vmbr2
+              - vmbr3
+        metered: 0
+        ingressrate: 0 Mbps
+        egressrate: 0 Mbps
+        ingressvolumemonthly: 1000 GiB
+        egressvolumemonthly: 100 GiB
+      - uuid: 12345678-1234-1234-1234-123456789012
+        name: eth1
+        type: virtio
+        bridge: vmbr4
+        mac: 00:00:00:00:00:00
+        ip: 192.168.101.100/24
+        gateway: 192.168.101.1
+        dns: N/A
+        hotplug: 0
+        firewall: 1
+        rate: 0 Mbps
+        tag: 1
+        trunks:
+          - vlan: 300
+            tag: 0
+            bridges:
+              - vmbr4
+              - vmbr5
+          - vlan: 400
+            tag: 0
+            bridges:
+              - vmbr6
+              - vmbr7
+        metered: 0
+        ingressrate: 0 Mbps
+        egressrate: 0 Mbps
+        ingressvolumemonthly: 1000 GiB
+        egressvolumemonthly: 100 GiB
   os:
-    distribution: Ubuntu
-    version: 20.04
-  sbom: /path/to/sbom.txt
-  installed_sw:
-    - package1
-    - package2
-    - package3
-  configuration_files:
-    - /path/to/config1.conf
-    - /path/to/config2.conf
-  backup_lifecycle:
-    - schedule: daily
+    distribution: Debian
+    version: 12
+    release: 12.0
+    architecture: amd64
+    kernel: 5.10.0-8-amd64
+    init: systemd
+    timezone: Europe/Prague
+      ntp_servers:
+        - 0.cz.pool.ntp.org
+        - 1.cz.pool.ntp.org
+        - 2.cz.pool.ntp.org
+        - 3.cz.pool.ntp.org
+    locale: en_US.UTF-8
+      keyboard: us
+    packages:
+      - package1
+      - package2
+      - package3
+    services:
+      - service1
+      - service2
+      - service3
+    users:
+      - username: root
+        password: SHA512HASH
+        groups:
+          - root
+          - adm
+          - group1
+          - group2
+        homedir: /root
+        shell: /bin/bash
+        sudo: N/A
+        ssh:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZ...
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZ...
+      - username: user1
+        password: SHA512HASH
+        groups:
+          - group1
+          - group2
+        homedir: /home/user1
+        shell: /bin/bash
+        sudo: 1
+        ssh:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZ...
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZ...    
+    security:
+      firewall_rules_definition: IaC/vms/vm1/fw_rules.yml
+      selinux: disabled
+      apparmor: disabled
+      grsec: disabled
+      pam: enabled
+      ssh:
+        - name: allow-root-login
+          state: enabled
+        - name: prohibit-root-password
+          state: enabled
+        - name: allow-password-authentication
+          state: disabled
+        - name: allow-pubkey-authentication
+          state: enabled
+  monitoring_definition: IaC/vms/vm1/monitoring.yml
+  backup:
+    - name: backup0
+      state: enabled
+      type: vzdump
+      schedule: daily
       retention: 7 days
-    - schedule: weekly
-      retention: 4 weeks
+      storage: local-lvm
+      compression: gzip
+      encryption: N/A
+      notify:
+        - email: admin@example.com
+          state: enabled
+        - email:
+          state: disabled
+      exclude:
+        - /path/to/exclude1
+        - /path/to/exclude2
+        - /path/to/exclude3
+      include:
+        - /path/to/include1
+        - /path/to/include2
+        - /path/to/include3
+  sbom: IaC/vms/vm1_sbom.txt
+  configuration_management_definition: IaC/vms/vm1/configuration_management.yml
   automation:
-    alarms_definition: /path/to/alarms.yml
-    ticket_definition: /path/to/tickets.yml
-    ticket_enrichment_definition: /path/to/ticket_enrichment.yml
+    alarms:
+      definition: automation/alarms.yml
+      rules:
+        definition: automation/rules.yml
+      workflows:
+        definition: automation/workflows.yml
+    tickets:
+      definition: automation/tickets.yml
+      ticket_enrichment:
+        definition: automation/ticket_enrichment.yml
+      ticket_resolution:
+        definition: automation/ticket_resolution.yml
+    jobs:
+      definition: automation/jobs.yml
+      triggers:
+        definition: automation/triggers.yml
+    timers:
+      systemd_timers:
+        definition: automation/systemd_timers.yml
+      cron_jobs:
+        definition: automation/cron_jobs.yml
+    tasks:
+      definition: automation/tasks.yml
+      task_history:
+        definition: automation/task_history.yml
+        retention: 30 days
+    wrappers:
+      wrappers: wrappers/*.sh
+  tags:
+    - tag1
+    - tag2
+    - tag3
+  notes: |
+    This is a note.
+    This is another note.
+    This is yet another note.
+  comments: |
+    This is a comment.
+    This is another comment.
+    This is yet another comment.
+  metadata:
+    - key: key1
+      value: value1
+    - key: key2
+      value: value2
+    - key: key3
+      value: value3
+  state: present
+  deletion_protection: 0
+  force: 0
+  start_at_boot: 1
+    delay: 10
+  start_after_creation: 1
+    delay: 10
+  start_after_migration: 1
+    delay: 10
+  start_after_backup: 1
+    delay: 10
+  start_after_snapshot: 1
+    delay: 10
+  start_after_clone: 1
+    delay: 10
+  shutdown_delay: 20
+  shutdown_command: shutdown -h now
+  reboot_delay: 20
+  reboot_command: shutdown -r now
