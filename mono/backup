@@ -5,7 +5,7 @@
 
 # Initialization of variables
 # Set loglevel to maximum verbosity
-# loglevel="error"
+# loglevel="err"
 # loglevel="warning"
 # loglevel="info"
 loglevel="debug"
@@ -23,10 +23,10 @@ echo "$logmessage" | systemd-cat -t "backup" -p "info"
 # Check if all positional parameters are set, if not, exit 1
 if [[ $# -ne 3 ]]
 then
-    # Log error (error) and exit 1
+    # Log err (err) and exit 1
     errormessage="ERROR  Not all positional parameters are set"
     logmessage="ERROR  $(echo \"$errormessage\")"
-    echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    echo "$logmessage" | systemd-cat -t "backup" -p "err"
     exit 1
 fi
 
@@ -41,10 +41,10 @@ then
     apt-get install coreutils
     if [[ "#?" -ne 0 ]]
     then
-        # Always log this Error (error) and exit 1
+        # Always log this err (err) and exit 1
         errormessage="ERROR  date command not found and could not be installed"
         logmessage="ERROR  $(echo \"$errormessage\")"
-        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        echo "$logmessage" | systemd-cat -t "backup" -p "err"
     fi
 fi
 # This is a strange problem, lets DEBUG a bit - The date command should be provided by coreutils. Lets see what is happening here!
@@ -65,10 +65,10 @@ then
     apt-get install pwgen
     if [[ "#?" -ne 0 ]]
     then
-        # Always log this Error (error) and exit 1
+        # Always log this err (err) and exit 1
         errormessage="ERROR  pwgen command not found and could not be installed"
         logmessage="ERROR  $(echo \"$errormessage\")"
-        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        echo "$logmessage" | systemd-cat -t "backup" -p "err"
     fi
 fi
 # This is a strange problem, lets DEBUG a bit - The pwgen command should be provided by pwgen... We will exit 1 afterwards
@@ -89,10 +89,10 @@ then
     apt-get install pvesh
     if [[ "#?" -ne 0 ]]
     then
-        # Always log this Error (error) and exit 1
+        # Always log this err (err) and exit 1
         errormessage="ERROR  pvesh command not found and could not be installed"
         logmessage="ERROR  $(echo \"$errormessage\")"
-        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        echo "$logmessage" | systemd-cat -t "backup" -p "err"
     fi
 fi
 # This is a strange problem, lets DEBUG a bit - This is a big problem, because we are either on a wrong host or pvesh is not working
@@ -114,10 +114,10 @@ then
     apt-get install gawk
     if [[ "#?" -ne 0 ]]
     then
-        # Always log this Error (error) and exit 1
+        # Always log this err (err) and exit 1
         errormessage="ERROR  awk command not found and could not be installed"
         logmessage="ERROR  $(echo \"$errormessage\")"
-        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        echo "$logmessage" | systemd-cat -t "backup" -p "err"
     fi
 fi
 # This is a strange problem, lets DEBUG a bit - This is a big problem, we are lost without GnuAWK
@@ -138,10 +138,10 @@ then
     apt-get install grep
     if [[ "#?" -ne 0 ]]
     then
-        # Always log this Error (error) and exit 1
+        # Always log this err (err) and exit 1
         errormessage="ERROR  grep command not found and could not be installed"
         logmessage="ERROR  $(echo \"$errormessage\")"
-        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        echo "$logmessage" | systemd-cat -t "backup" -p "err"
     fi
 fi
 # This is a strange problem, lets DEBUG a bit - This is a big problem, we are lost without grep
@@ -199,10 +199,10 @@ fi
 $pveshcmd $snapshotcreationmethod $snapshotcreationapipath $snapshotcreationparams
 if [[ "#?" -ne 0 ]]
 then
-    # Log error (error) and exit 1
+    # Log err (err) and exit 1
     errormessage="ERROR  Snapshot creation failed"
     logmessage="ERROR  $(echo \"$errormessage\")"
-    echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    echo "$logmessage" | systemd-cat -t "backup" -p "err"
     exit 1
 fi
 # Check the status of the last snapshot creation operation                                   
@@ -212,10 +212,10 @@ do
     snapshotstatus=$($pveshcmd $snapshotstatusmethod $snapshotstatusapipath $snapshotstatuscheckparams | $awkcmd '{ print $10 }')
     if [[ "$snapshotstatus" == "ERROR" ]]
     then
-        # Log error (error) and exit 1
+        # Log err (err) and exit 1
         errormessage="ERROR  Snapshot creation failed"
         logmessage="ERROR  $(echo \"$errormessage\")"
-        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        echo "$logmessage" | systemd-cat -t "backup" -p "err"
         exit 1
     fi
 done
