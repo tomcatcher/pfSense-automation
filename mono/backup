@@ -3,25 +3,175 @@
 # Backup script, simple, monolithic
 # This script creates a snapshot of a VM determined by the third positional parameter.
 
-# Set up variables
+# Initialization
+# Log info (info)
+infomessage="INFO   Initializing backup script"
+logmessage="INFO   $(echo \"$infomessage\")"
+echo "$logmessage" | systemd-cat -t "backup" -p "info"
+
+# Set loglevel to maximum verbosity
+loglevel="error"
+loglevel="warning"
+loglevel="info"
+loglevel="debug"
+
+# Log info (info) Setting and verifying variables
+infomessage="INFO   Setting and verifying variables"
+logmessage="INFO   $(echo \"$infomessage\")"
+echo "$logmessage" | systemd-cat -t "backup" -p "info"
+
+# Check if all positional parameters are set, if not, exit 1
+if [[ $# -ne 3 ]]
+then
+    # Log error (error) and exit 1
+    errormessage="ERROR  Not all positional parameters are set"
+    logmessage="ERROR  $(echo \"$errormessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    exit 1
+fi
+
+# Check if all dependencies are installed, if they are not, install them, if they mey not be installed, exit 1
 datecmd=$(command -v date)
+if [[ "#?" -ne 0 ]]
+then
+    # Log warning (warning) and try to install coreutils
+    warningmessage="WARNING date command not found, trying to install coreutils"
+    logmessage="INFO   $(echo \"$warningmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "warning"
+    apt-get install coreutils
+    if [[ "#?" -ne 0 ]]
+    then
+        # Always log this Error (error) and exit 1
+        errormessage="ERROR  date command not found and could not be installed"
+        logmessage="ERROR  $(echo \"$errormessage\")"
+        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    fi
+fi
+# This is a strange problem, lets DEBUG a bit - The date command should be provided by coreutils. Lets see what is happening here!
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $(which date; command -v date; dpkg --list; dpkg -S coreutils; dpkg -S date; dpkg -S `which date`) END OF DEBUG MESSAGE"
+    logmessage="INFO   $(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    exit 1
+fi
 pwgencmd=$(command -v pwgen)
+if [[ "#?" -ne 0 ]]
+then
+    # Log warning (warning) and try to install pwgen
+    warningmessage="WARNING pwgen command not found. Trying to install it."
+    logmessage="INFO   $(echo \"$wartningmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "warning"
+    apt-get install pwgen
+    if [[ "#?" -ne 0 ]]
+    then
+        # Always log this Error (error) and exit 1
+        errormessage="ERROR  pwgen command not found and could not be installed"
+        logmessage="ERROR  $(echo \"$errormessage\")"
+        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    fi
+fi
+# This is a strange problem, lets DEBUG a bit - The pwgen command should be provided by pwgen... We will exit 1 afterwards
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $(which pwgen; command -v pwgen; dpkg --list; dpkg -S pwgen; dpkg -S `which pwgen`) END OF DEBUG MESSAGE"
+    logmessage="INFO   $(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    exit 1
+fi
 pveshcmd=$(command -v pvesh)
+if [[ "#?" -ne 0 ]]
+then
+    # Log warning (warning) and try to install pvesh
+    warningmessage="WARNING pvesh command not found. Trying to install it."
+    logmessage="INFO   $(echo \"$wartningmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "warning"
+    apt-get install pvesh
+    if [[ "#?" -ne 0 ]]
+    then
+        # Always log this Error (error) and exit 1
+        errormessage="ERROR  pvesh command not found and could not be installed"
+        logmessage="ERROR  $(echo \"$errormessage\")"
+        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    fi
+fi
+# This is a strange problem, lets DEBUG a bit - This is a big problem, because we are either on a wrong host or pvesh is not working
+# And lets just exit 1 after that
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $(which pvesh; command -v pvesh; dpkg --list) END OF DEBUG MESSAGE"
+    logmessage="INFO   $(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    exit 1
+fi
 awkcmd=$(command -v awk)
+if [[ "#?" -ne 0 ]]
+then
+    # Log warning (warning) and try to install gawk
+    warningmessage="WARNING awk command not found. Trying to install it."
+    logmessage="INFO   $(echo \"$warningmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "warning"
+    apt-get install gawk
+    if [[ "#?" -ne 0 ]]
+    then
+        # Always log this Error (error) and exit 1
+        errormessage="ERROR  awk command not found and could not be installed"
+        logmessage="ERROR  $(echo \"$errormessage\")"
+        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    fi
+fi
+# This is a strange problem, lets DEBUG a bit - This is a big problem, we are lost without GnuAWK
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $(which awk; command -v awk; dpkg --list; dpkg -S awk; dpkg -S gawk; dpkg -S `which awk`; dpkg -S /bin/awk) END OF DEBUG MESSAGE"
+    logmessage="INFO   $(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    exit 1
+fi
 grepcmd=$(command -v grep)
+if [[ "#?" -ne 0 ]]
+then
+    # Log warning (warning) and try to install grep
+    warningmessage="WARNING grep command not found. Trying to install it."
+    logmessage="INFO   $(echo \"$warningmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "warning"
+    apt-get install grep
+    if [[ "#?" -ne 0 ]]
+    then
+        # Always log this Error (error) and exit 1
+        errormessage="ERROR  grep command not found and could not be installed"
+        logmessage="ERROR  $(echo \"$errormessage\")"
+        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    fi
+fi
+# This is a strange problem, lets DEBUG a bit - This is a big problem, we are lost without grep
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $(which grep; command -v grep; dpkg --list; dpkg -S /bin/grep) END OF DEBUG MESSAGE"
+    logmessage="INFO   $(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
+    exit 1
+fi
 catcmd=$(command -v cat)
+# No need to test here, we alredy know coreutils is installed and we have tested it above
 trcmd=$(command -v tr)
+# No need to test here, we alredy know coreutils is installed and we have tested it above
 foldcmd=$(command -v fold)
+# No need to test here, we alredy know coreutils is installed and we have tested it above
 headcmd=$(command -v head)
+# No need to test here, we alredy know coreutils is installed and we have tested it above
 tailcmd=$(command -v tail)
+# No need to test here, we alredy know coreutils is installed and we have tested it above
 shufcmd=$(command -v shuf)
-logfile="/var/log/backup.log"
+# No need to test here, we alredy know coreutils is installed and we have tested it above
 dfcmd=$(command -v df)
+# No need to test here, we alredy know coreutils is installed and we have tested it above
+
 nodename="$1"
 vmtype="$2"
 vmid="$3"
 format="text"
-snapshot_name=$($vmid)_$(datecmd +%Y%m%d_%H%M%S)_$(echo "SNAP0-`for i in a b c d e f; do $catcmd /dev/urandom | $trcmd -dc 'a-z' | $foldcmd -w 2 | $headcmd -n 1;$shufcmd -i 100000-999999 -n 1; done`" | $trcmd -d "\n")
+snapshot_name=$($vmid)_$($datecmd +%Y%m%d_%H%M%S)_$(echo "SNAP0-`for i in a b c d e f; do $catcmd /dev/urandom | $trcmd -dc 'a-z' | $foldcmd -w 2 | $headcmd -n 1;$shufcmd -i 100000-999999 -n 1; done`" | $trcmd -d "\n")
 snapshotcreationparams="--quiet --snapname $snapshot_name"
 snapshotstatuscheckparams="--output-format $format --human-readable 1 --noborder 1 --noheader 1 --source all --limit 1 --vmid $vmid"
 snapshotcreationapipath="/nodes/$nodename/$vmtype/$vmid/snapshot"
@@ -35,31 +185,54 @@ if "$loglevel" == "info"
 then
     infomessage="INFO   Backup script started"
     logmessage="INFO   $(echo \"$infomessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "info"
+    echo "$logmessage" | systemd-cat -t "backup" -p "info"
 fi
 # Log debug info (debug)
 if "$loglevel" == "debug"
 then
-    debugmessage="DEBUG  $($dfcmd -m $mountpoint | $awkcmd '{ print $4 }' | $tailcmd -n 1) MiB free on $mountpoint before backup started"
+    debugmessage="DEBUG  $($dfcmd -m $mountpoint | $awkcmd '{ print $4 }' | $tailcmd -n 1) MiB free on $mountpoint before backup started. END OF DEBUG MESSAGE"
     logmessage="INFO   Backup started\n\t$(echo \"$debugmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
 fi
 
 # Create the snapshot
 $pveshcmd $snapshotcreationmethod $snapshotcreationapipath $snapshotcreationparams
+if [[ "#?" -ne 0 ]]
+then
+    # Log error (error) and exit 1
+    errormessage="ERROR  Snapshot creation failed"
+    logmessage="ERROR  $(echo \"$errormessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "error"
+    exit 1
+fi
 # Check the status of the last snapshot creation operation                                   
 while [ "$snapshotstatus" != "OK" ]
 do
     sleep 1
     snapshotstatus=$($pveshcmd $snapshotstatusmethod $snapshotstatusapipath $snapshotstatuscheckparams | $awkcmd '{ print $10 }')
+    if [[ "$snapshotstatus" == "ERROR" ]]
+    then
+        # Log error (error) and exit 1
+        errormessage="ERROR  Snapshot creation failed"
+        logmessage="ERROR  $(echo \"$errormessage\")"
+        echo "$logmessage" | systemd-cat -t "backup" -p "error"
+        exit 1
+    fi
 done
+if [[ "$snapshotstatus" == "OK" ]]
+then
+    # Log info (info)
+    infomessage="INFO   Snapshot created successfully"
+    logmessage="INFO   $(echo \"$infomessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "info"
+fi
 
 # Log debug info (debug)
 if "$loglevel" == "debug"
 then
-    debugmessage="DEBUG  $($dfcmd -m $mountpoint | $awkcmd '{ print $4 }' | $tailcmd -n 1) MiB free on $mountpoint after snapshot created"
+    debugmessage="DEBUG  $($dfcmd -m $mountpoint | $awkcmd '{ print $4 }' | $tailcmd -n 1) MiB free on $mountpoint after snapshot created END OF DEBUG MESSAGE"
     logmessage="INFO   Snapshot created\n\t$(echo \"$debugmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
 fi
 # log end of script (info)
 if "$loglevel" == "info"
