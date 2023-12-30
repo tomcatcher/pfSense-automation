@@ -3,17 +3,17 @@
 # Backup script, simple, monolithic
 # This script creates a snapshot of a VM determined by the third positional parameter.
 
-# Initialization
-# Log info (info)
-infomessage="INFO   Initializing backup script"
-logmessage="INFO   $(echo \"$infomessage\")"
-echo "$logmessage" | systemd-cat -t "backup" -p "info"
-
+# Initialization of variables
 # Set loglevel to maximum verbosity
 # loglevel="error"
 # loglevel="warning"
 # loglevel="info"
 loglevel="debug"
+
+# Log info (info)
+infomessage="INFO   Initializing backup script"
+logmessage="INFO   $(echo \"$infomessage\")"
+echo "$logmessage" | systemd-cat -t "backup" -p "info"
 
 # Log info (info) Setting and verifying variables
 infomessage="INFO   Setting and verifying variables"
