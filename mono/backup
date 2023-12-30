@@ -1,0 +1,72 @@
+#!/usr/bin/bash
+
+# Backup script, simple, monolithic
+# This script creates a snapshot of a VM determined by the third positional parameter.
+
+# Set up variables
+datecmd=$(command -v date)
+pwgencmd=$(command -v pwgen)
+pveshcmd=$(command -v pvesh)
+awkcmd=$(command -v awk)
+grepcmd=$(command -v grep)
+catcmd=$(command -v cat)
+trcmd=$(command -v tr)
+foldcmd=$(command -v fold)
+headcmd=$(command -v head)
+tailcmd=$(command -v tail)
+shufcmd=$(command -v shuf)
+logfile="/var/log/backup.log"
+dfcmd=$(command -v df)
+nodename="$1"
+vmtype="$2"
+vmid="$3"
+format="text"
+snapshot_name=$($vmid)_$(datecmd +%Y%m%d_%H%M%S)_$(echo "SNAP0-`for i in a b c d e f; do $catcmd /dev/urandom | $trcmd -dc 'a-z' | $foldcmd -w 2 | $headcmd -n 1;$shufcmd -i 100000-999999 -n 1; done`" | $trcmd -d "\n")
+snapshotcreationparams="--quiet --snapname $snapshot_name"
+snapshotstatuscheckparams="--output-format $format --human-readable 1 --noborder 1 --noheader 1 --source all --limit 1 --vmid $vmid"
+snapshotcreationapipath="/nodes/$nodename/$vmtype/$vmid/snapshot"
+snapshotstatusapipath="/nodes/$nodename/tasks"
+snapshotcreationmethod="create"
+snapshotstatusmethod="get"
+mountpoint="/mnt/pve/elements"
+
+# Log start of script (info)
+if "$loglevel" == "info"
+then
+    infomessage="INFO   Backup script started"
+    logmessage="INFO   $(echo \"$infomessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "info"
+fi
+# Log debug info (debug)
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $($dfcmd -m $mountpoint | $awkcmd '{ print $4 }' | $tailcmd -n 1) MiB free on $mountpoint before backup started"
+    logmessage="INFO   Backup started\n\t$(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+fi
+
+# Create the snapshot
+$pveshcmd $snapshotcreationmethod $snapshotcreationapipath $snapshotcreationparams
+# Check the status of the last snapshot creation operation                                   
+while [ "$snapshotstatus" != "OK" ]
+do
+    sleep 1
+    snapshotstatus=$($pveshcmd $snapshotstatusmethod $snapshotstatusapipath $snapshotstatuscheckparams | $awkcmd '{ print $10 }')
+done
+
+# Log debug info (debug)
+if "$loglevel" == "debug"
+then
+    debugmessage="DEBUG  $($dfcmd -m $mountpoint | $awkcmd '{ print $4 }' | $tailcmd -n 1) MiB free on $mountpoint after snapshot created"
+    logmessage="INFO   Snapshot created\n\t$(echo \"$debugmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+fi
+# log end of script (info)
+if "$loglevel" == "info"
+then
+    infomessage="INFO   Backup script ended"
+    logmessage="INFO   $(echo \"$infomessage\")"
+    echo "$logmessage" | systemd-cat -t "backup.sh" -p "info"
+fi
+
+exit 0
