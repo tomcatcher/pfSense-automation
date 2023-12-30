@@ -23,11 +23,15 @@ echo "$logmessage" | systemd-cat -t "backup" -p "info"
 # Check if all positional parameters are set, if not, exit 1
 if [[ $# -ne 3 ]]
 then
-    # Log err (err) and exit 1
-    errormessage="ERROR  Not all positional parameters are set"
-    logmessage="ERROR  $(echo \"$errormessage\")"
-    echo "$logmessage" | systemd-cat -t "backup" -p "err"
-    exit 1
+    # Log warning (warning) and print usage message
+    echo "Usage:"
+    echo "$(echo \"$0\" | $sedcmd \'s/\// /g\' | $awkcmd \'{ print $NF }\')$(echo \"<nodename> <vmtype> <vmid>\")"
+    warningmessage="Incorrect number of positional parameters."
+    logmessage="WARNING $(echo \"$warningmessage\")"
+    echo "$logmessage" | systemd-cat -t "backup" -p "warning"
+    read -p "Enter nodename: " nodename
+    read -p "  Enter vmtype: " vmtype
+    read -p "    Enter vmid: " vmid
 fi
 
 # Check if all dependencies are installed, if they are not, install them, if they mey not be installed, exit 1
@@ -52,7 +56,7 @@ if "$loglevel" == "debug"
 then
     debugmessage="DEBUG  $(which date; command -v date; dpkg --list; dpkg -S coreutils; dpkg -S date; dpkg -S `which date`) END OF DEBUG MESSAGE"
     logmessage="INFO   $(echo \"$debugmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
     exit 1
 fi
 pwgencmd=$(command -v pwgen)
@@ -76,7 +80,7 @@ if "$loglevel" == "debug"
 then
     debugmessage="DEBUG  $(which pwgen; command -v pwgen; dpkg --list; dpkg -S pwgen; dpkg -S `which pwgen`) END OF DEBUG MESSAGE"
     logmessage="INFO   $(echo \"$debugmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
     exit 1
 fi
 pveshcmd=$(command -v pvesh)
@@ -101,7 +105,7 @@ if "$loglevel" == "debug"
 then
     debugmessage="DEBUG  $(which pvesh; command -v pvesh; dpkg --list) END OF DEBUG MESSAGE"
     logmessage="INFO   $(echo \"$debugmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
     exit 1
 fi
 awkcmd=$(command -v awk)
@@ -125,7 +129,7 @@ if "$loglevel" == "debug"
 then
     debugmessage="DEBUG  $(which awk; command -v awk; dpkg --list; dpkg -S awk; dpkg -S gawk; dpkg -S `which awk`; dpkg -S /bin/awk) END OF DEBUG MESSAGE"
     logmessage="INFO   $(echo \"$debugmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "debug"
+    echo "$logmessage" | systemd-cat -t "backup" -p "debug"
     exit 1
 fi
 grepcmd=$(command -v grep)
@@ -134,7 +138,7 @@ then
     # Log warning (warning) and try to install grep
     warningmessage="WARNING grep command not found. Trying to install it."
     logmessage="INFO   $(echo \"$warningmessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "warning"
+    echo "$logmessage" | systemd-cat -t "backup" -p "warning"
     apt-get install grep
     if [[ "#?" -ne 0 ]]
     then
@@ -239,7 +243,7 @@ if "$loglevel" == "info"
 then
     infomessage="INFO   Backup script ended"
     logmessage="INFO   $(echo \"$infomessage\")"
-    echo "$logmessage" | systemd-cat -t "backup.sh" -p "info"
+    echo "$logmessage" | systemd-cat -t "backup" -p "info"
 fi
 
 exit 0
