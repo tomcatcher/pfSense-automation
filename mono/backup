@@ -10,9 +10,9 @@ logmessage="INFO   $(echo \"$infomessage\")"
 echo "$logmessage" | systemd-cat -t "backup" -p "info"
 
 # Set loglevel to maximum verbosity
-loglevel="error"
-loglevel="warning"
-loglevel="info"
+# loglevel="error"
+# loglevel="warning"
+# loglevel="info"
 loglevel="debug"
 
 # Log info (info) Setting and verifying variables
