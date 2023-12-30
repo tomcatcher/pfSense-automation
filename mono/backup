@@ -8,7 +8,7 @@
 # loglevel="err"
 # loglevel="warning"
 # loglevel="info"
-loglevel="debug"
+# loglevel="debug"
 
 # Log info (info)
 infomessage="INFO   Initializing backup script"
