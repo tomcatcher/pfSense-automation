@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Backup script, simple, monolithic
-# This script creates a snapshot of a VM determined by the third positional parameter.
+# This script creates a snapshot of VM determined by the third positional parameter.
 
 # Initialization of variables
 # Set loglevel to maximum verbosity
