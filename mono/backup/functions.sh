@@ -8,9 +8,9 @@ function log() {
     # Convert verbosity to uppercase
     local logtaglabel=${verbosity^^}
     # Construct the logmessage
-    local logmessage="$logtaglabel\t$(echo \"$infomessage\")"
+    local logmessage="$logtaglabel\t$infomessage"
     # Log the message
-    echo "$logmessage" | systemd-cat -t "$unitname" -p "verbosity"
+    echo "$logmessage" | systemd-cat -t "$unitname" -p "$verbosity"
     return $?
 }
 
