@@ -38,7 +38,7 @@ function checkdep() {
         "tr")
             local package="coreutils"
             ;;
-        fold)
+        "fold")
             local package="coreutils"
             ;;
         "head")
@@ -59,12 +59,12 @@ function checkdep() {
     esac
     # Check if the command is installed
     local cmd=$(command -v "$1")
-    if [[ "#?" -ne 0 ]]
+    if [[ "$?" -ne 0 ]]
     then
         # Log warning (warning) and try to install coreutils
         log backup warning "$cmd command not found, trying to install it"
         apt-get install "$package"
-        if [[ "#?" -ne 0 ]]
+        if [[ "$?" -ne 0 ]]
         then
             # Always log this err (err) and exit 1
             log backup err "$cmd command not found and could not be installed"
@@ -96,7 +96,7 @@ function checkparams() {
 
 function dobackup() {
     $1 $2 $3 $4
-    if [[ "#?" -ne 0 ]]
+    if [[ "$?" -ne 0 ]]
     then
         # Log err (err) and exit 1
         log backup err "Snapshot creation failed"
